@@ -1,0 +1,10 @@
+source 'https://rubygems.org'
+
+gem 'sinatra'
+gem 'mongo'
+gem 'bson'
+gem 'bson_ext'
+gem 'sinatra-assetpack', :require => 'sinatra/assetpack'
+gem 'therubyracer'
+gem 'less'
+gem 'mongoid'

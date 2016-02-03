@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Car App</title>
+    <%= css :application %>
+  </head>
+  <body>
+	<% if !@car.humans.empty? %>
+    <h2>People in <%=@car.name%></h2>
+	<table>
+      <thead>
+	    <th>Name</th>
+		<th>Has Keys?</th>
+		<th>&nbsp</th>
+	  </thead>
+
+	  <tbody>
+	    <% @car.humans.each do |human| %>
+		<tr>
+		  <td><%= human["name"] %></td>
+		  <td><%= human["keys"] ? "Yes" : "" %></td>
+		  <td>
+			<form method="post" action="/eliminate_human">
+		      <input type="hidden" name="human_to_eliminate" value="<%= human["name"] %>">
+			  <input type="hidden" name="car_id" value="<%=@car.id%>" />
+			  <input value="Eliminate Human" class="btn btn-block btn-sm btn-default" type="submit">
+		    </form>
+		  </td>
+		</tr>
+		<%end%>
+	  </tbody>
+	</table>
+	<% end %>
+	
+    <form id="new_human" method="post" action="/add_human">
+      <input type="hidden" name="car_id" value="<%=@car.id%>" />
+      <input type="text" name="human_name" placeholder="Name" />
+	  <br>
+	  Keys?
+	  <br>
+	  <input type="radio" name="keys" value="true">Yes
+	  <br>
+	  <input type="radio" name="keys" checked value="false">No
+	  <br>
+      <input value="Add Human" type="submit" />
+    </form>
+	<a href="/" class="btn btn-block btn-sm btn-default">Home</a>
+  </body>
+</html>

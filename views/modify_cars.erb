@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Car App</title>
+    <%= css :application %>
+  </head>
+  <body>
+    <% if !@cars.empty? %>
+	<!-- <% p @cars %> -->
+    <h2>List of Cars</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+		<th>&nbsp</th>
+      </thead>
+      
+      <tbody>
+        <% @cars.each do |car|%>
+        <tr>
+          <td><%=car.name%></td>
+		  <td>
+			<a href="/remove_car/<%=car.id%>" class="btn btn-block btn-sm btn-default"> Delete Car</a>
+		  </td>
+        </tr>
+        <%end%>
+      </tbody>
+    </table>
+    <% end %>
+
+    <form id="new_car" method="post" action="/new_car">
+      <p>Add a New Car</p>
+      <input name="name" placeholder="Name" required="required" />
+      <input type="submit" class="btn btn-block btn-sm btn-default"/>
+    </form>
+	
+    <a href="/" class="btn btn-block btn-sm btn-default">Home</a>
+  </body>
+</html>

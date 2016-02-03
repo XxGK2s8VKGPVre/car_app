@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Car App</title>
+    <%= css :application %>
+  </head>
+  <body>
+    <form method="post" action="/set_departure_time">
+    	Enter the time this car will depart and where it is going
+    	<input type="hidden" name="car_id" value="<%=@car_id%>" />
+    	<input name="departure_time" />
+    	<input value="Set Time" type="submit" />
+    </form>
+  </body>
+</html>

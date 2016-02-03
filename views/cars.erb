@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Car App</title>
+    <%= css :application %>
+  </head>
+  <body>
+    <% if !@cars.empty? %>
+    <h2>List of Cars</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>When and Where</th>
+        <th>Number of Humans</th>
+        <th>&nbsp;</th>
+      </thead>
+      
+      <tbody>
+        <% @cars.each do |car|%>
+        <tr>
+          <td><%=car.name%></td>
+          <td>
+            <form method="get" action="/set_departure_time/<%=car.id%>">
+              <input class="btn btn-block btn-sm btn-default" value="<%=car.departure_time%>" type="submit" />
+            </form>
+          </td>
+          <td><% car.humans.each do |human| %>
+                <% if human["keys"] %>
+			      <img src="/img/user_red.png">
+			    <% else %>
+			      <img src="/img/user.png"/>
+				<% end %>
+              <% end %>
+          </td>
+          <td>
+            <a href="/modify_humans/<%=car.id%>" class="btn btn-block btn-sm btn-default">Change Humans In Car</a>
+          </td>
+        </tr>
+        <%end%>
+      </tbody>
+    </table>
+    <% end %>
+	<h4>Car Settings</h4>
+	<a href="/modify_cars" class="btn btn-block btn-sm btn-default">Edit Car Settings</a>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+test:
+  sessions:
+    default:
+      database: cars
+      hosts:
+        - localhost:27017
